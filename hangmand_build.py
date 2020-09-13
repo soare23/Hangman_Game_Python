@@ -1,7 +1,8 @@
 import random
 
 
-capitals_list = ["LONDON","PARIS", "BUCHAREST", "WARSOW", "BUDAPEST", "ROME", "ATHENS", "BERLIN", "LISBON", "MADRID", "KIEV", "SOFIA", "DUBLIN", "BRUSSELS", "COPENHAGEN", "LUXEMBOURG", "AMSTERDAM", "STOCKHOLM"]
+capitals_list = ["LONDON", "PARIS", "BUCHAREST", "WARSOW", "BUDAPEST", "ROME", "ATHENS", "BERLIN", "LISBON",
+                 "MADRID", "KIEV", "SOFIA", "DUBLIN", "BRUSSELS", "COPENHAGEN", "LUXEMBOURG", "AMSTERDAM", "STOCKHOLM"]
 
 
 def pick_category(capitals):
@@ -24,7 +25,7 @@ def uncover(hashed_password, password, letter):
             hashed_password[i] = password[i]
 
     return "".join(hashed_password)
-    
+
 
 def is_win(hashed_password, password):
     if hashed_password == password:
@@ -64,7 +65,8 @@ def main():
     capital = pick_category(capitals_list)
     hashed_capital = get_hashed(capital)
     life_points = len(capital) + 2
-    print("You have " + str(life_points - 1) + " tries to guess the capital:", end="")
+    print("You have " + str(life_points - 1) +
+          " tries to guess the capital:", end="")
     for x in hashed_capital:
         print(x, end=" ")
 
@@ -79,15 +81,17 @@ def main():
                 print(x, end=" ")
             life_points = life_points - 1
             if is_loose(life_points) is True:
-                print("\n\n" + "You are out of lives! " + "The capital was: " + capital.upper())
+                print("\n\n" + "You are out of lives! " +
+                      "The capital was: " + capital.upper())
                 break
             print("       " + "Letters used: " + " ".join(used_letters))
         else:
             print("You have already used this letter, try a different one!")
 
         if is_win(hashed_capital, capital) or is_win(letter, capital) is True:
-            print("\n\n" + "The capital is: " + capital.upper() + "\n\n" + "Congratualtions! You win!")
+            print("\n\n" + "The capital is: " + capital.upper() +
+                  "\n\n" + "Congratualtions! You win!")
             break
-    
+
 
 main()
